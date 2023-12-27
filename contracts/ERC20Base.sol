@@ -8,6 +8,7 @@ import "@thirdweb-dev/contracts/external-deps/openzeppelin/token/ERC20/extension
 import "@thirdweb-dev/contracts/extension/ContractMetadata.sol";
 import "@thirdweb-dev/contracts/extension/Multicall.sol";
 import "@thirdweb-dev/contracts/extension/Ownable.sol";
+import "@thirdweb-dev/contracts/extension/Permissions.sol";
 import "@thirdweb-dev/contracts/extension/PermissionsEnumerable.sol";
 
 import "@thirdweb-dev/contracts/extension/interface/IMintableERC20.sol";
@@ -33,9 +34,9 @@ contract ERC20Base is ContractMetadata, Multicall, Ownable, PermissionsEnumerabl
                             Constructor
     //////////////////////////////////////////////////////////////*/
 
-    constructor(string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
-        _setupOwner(msg.sender);
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+    constructor(address _defaultAdmin, string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
+        _setupOwner(_defaultAdmin);
+        _setupRole(DEFAULT_ADMIN_ROLE, _defaultAdmin);
     }
 
     /*//////////////////////////////////////////////////////////////
