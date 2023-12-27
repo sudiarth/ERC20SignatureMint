@@ -34,8 +34,6 @@ contract ERC20SignatureMint is ERC20Base, PrimarySale, SignatureMintERC20 {
         string memory _symbol,
         address _primarySaleRecipient
     ) ERC20Base(_defaultAdmin, _name, _symbol) {
-        _setupOwner(_defaultAdmin);
-        _setupRole(DEFAULT_ADMIN_ROLE, _defaultAdmin);
         _setupPrimarySaleRecipient(_primarySaleRecipient);
     }
 
